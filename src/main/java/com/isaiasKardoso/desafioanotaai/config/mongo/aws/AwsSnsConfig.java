@@ -1,3 +1,4 @@
+// Necessário cadastro AWS
 package com.isaiasKardoso.desafioanotaai.config.mongo.aws;
 
 import org.springframework.beans.factory.annotation.Value;

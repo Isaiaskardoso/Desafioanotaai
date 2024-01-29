@@ -29,7 +29,7 @@ public class ProductService { // instâncias
 
         this.repository.save(newProduct);
 
-        this.snsService.publish(new MessageDTO(newProduct.getOwnerId()));
+       // this.snsService.publish(new MessageDTO(newProduct.getOwnerId()));
 
         return newProduct;
     }
@@ -49,7 +49,7 @@ public class ProductService { // instâncias
         if (!(productData.price() == null)) product.setPrice(productData.price());
 
         this.repository.save(product);
-        this.snsService.publish(new MessageDTO(product.getOwnerId()));
+        //this.snsService.publish(new MessageDTO(product.getOwnerId()));
 
         return product;
     }
