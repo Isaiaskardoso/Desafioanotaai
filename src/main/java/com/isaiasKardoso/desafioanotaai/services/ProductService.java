@@ -25,11 +25,11 @@ public class ProductService { // instâncias
         Category category = this.categoryService.getById(productData.categoryId())
                 .orElseThrow(CategoryNotFoundException::new);
         Product newProduct = new Product(productData);
-        newProduct.setCategory(category);
+
 
         this.repository.save(newProduct);
 
-       // this.snsService.publish(new MessageDTO(newProduct.getOwnerId()));
+       // this.snsService.publish(new MessageDTO(newProduct.toString()));
 
         return newProduct;
     }
@@ -39,17 +39,17 @@ public class ProductService { // instâncias
 
         if (productData.categoryId() != null) {
             this.categoryService.getById(productData.categoryId())
-                    .ifPresent(product::setCategory);
+                    .orElseThrow(CategoryNotFoundException::new);
+            product.setCategory(productData.categoryId());
+
         }
-
-
 
         if (!productData.title().isEmpty()) product.setTitle(productData.title());
         if (!productData.description().isEmpty()) product.setDescription(productData.description());
         if (!(productData.price() == null)) product.setPrice(productData.price());
 
         this.repository.save(product);
-        //this.snsService.publish(new MessageDTO(product.getOwnerId()));
+        //this.snsService.publish(new MessageDTO(product.toString()));
 
         return product;
     }
